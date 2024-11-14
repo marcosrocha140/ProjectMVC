@@ -12,24 +12,30 @@ public class Main {
 		// TODO Auto-generated method stub
 		int value = 0;
 		Scanner sc = new Scanner(System.in);
+		Scanner sc2 = new Scanner(System.in);
 		UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
-		
-		
 		
 		while(value == 0) {
 			
-			System.out.println("1 - Cadastrar usuario."+"\n"+"2 - Buscar Usuario."+"3 - Listar usuarios."+"\n"+"4 - Atualiazar Usuario."+"\n"+"5 - Excluir usuario."
+			System.out.println("1 - Cadastrar usuario."+"\n"+"2 - Buscar Usuario."+"\n"+"3 - Listar usuarios."+"\n"+"4 - Atualiazar Usuario."+"\n"+"5 - Excluir usuario."
 					+"\n"+"0 - Sair");
 					
 			value = sc.nextInt();
 			switch(value) {
 				case 1:
-					Usuario novoUsuario = new Usuario("Marcos", "marcos@gmail.com");
+					System.out.println("Digite o nome..."+"\n");
+					String nome = sc2.nextLine();
+					System.out.println("Digite o email..."+"\n");
+					String email = sc2.nextLine();
+					Usuario novoUsuario = new Usuario(nome, email);
 					usuarioDAO.adicionarUsuario(novoUsuario);
+					value = 0;
 					break;
 				case 2:
-					Usuario usuario = usuarioDAO.buscarUsuario(1);
-					System.out.println("Usuario encontrado: "+ "ID: "+usuario.getId()+"Nome: "+usuario.getNome() + usuario.getEmail());
+					System.out.println("Digite o ID do usuario que queira buscar");
+					int id = sc2.nextInt();
+					Usuario usuario = usuarioDAO.buscarUsuario(id);
+					System.out.println("Usuario encontrado: "+ "ID: "+usuario.getId()+" Nome: "+usuario.getNome() +" "+"E-mail: "+ usuario.getEmail());
 					break;
 				case 3:
 					System.out.println("Listas de usuarios: ");
